@@ -19,10 +19,21 @@ class _JalurInformationParser extends RouteInformationParser<String> {
 
 class _JalurDelegate extends RouterDelegate<String>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<String> {
+  static _JalurDelegate _instance;
+
   final _navigatorKey = GlobalKey<NavigatorState>();
   String _current;
   Jalur route;
-  _JalurDelegate({@required this.route});
+
+  factory _JalurDelegate({@required Jalur route}) {
+    if (_instance == null) {
+      _instance = _JalurDelegate._(route: route);
+    }
+
+    return _instance;
+  }
+
+  _JalurDelegate._({@required this.route});
   List<_RouteInfo> builders = [];
 
   @override
