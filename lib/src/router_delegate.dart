@@ -30,6 +30,9 @@ class _JalurDelegate extends RouterDelegate<String>
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> parameters = {};
+    builders = route._getBuilders(_current, parameters: parameters).toList();
+
     return Navigate(
       delegate: this,
       child: Navigator(
@@ -72,9 +75,6 @@ class _JalurDelegate extends RouterDelegate<String>
   @override
   Future<void> setNewRoutePath(String configuration) async {
     _current = configuration;
-    Map<String, String> parameters = {};
-    builders = route._getBuilders(_current, parameters: parameters).toList();
-
     notifyListeners();
   }
 
